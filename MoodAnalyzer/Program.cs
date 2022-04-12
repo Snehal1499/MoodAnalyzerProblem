@@ -1,12 +1,13 @@
 ﻿using System;
 
-namespace MoodAnalyzer
+namespace Mood_Analyzer_problem
 {
-    internal class Program
+    class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome To MSTest Mood Analyzer Problem");
+            MoodAnalyzer moodAnalyzer = new MoodAnalyzer();
+            Console.WriteLine(moodAnalyzer.CheckMood("Snehal is Happy for her new Mobile"));
         }
     }
 }
