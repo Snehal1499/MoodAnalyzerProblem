@@ -6,8 +6,8 @@ namespace Mood_Analyzer_problem
     {
         static void Main(string[] args)
         {
-            MoodAnalyzer moodAnalyzer = new MoodAnalyzer();
-            Console.WriteLine(moodAnalyzer.CheckMood("Snehal is Happy for her new Mobile"));
+            MoodAnalyzer moodAnalyzer = new MoodAnalyzer("I am happy");
+            moodAnalyzer.AnalyzeMood();
         }
     }
 }
