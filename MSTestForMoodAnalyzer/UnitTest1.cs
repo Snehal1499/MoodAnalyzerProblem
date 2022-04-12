@@ -4,23 +4,50 @@ using Mood_Analyzer_problem;
 namespace MSTestForMoodAnalyzer
 {
     [TestClass]
-    public class MSTestForMoodAnalyzer
+    public class UnitTest1
     {
+
         [TestMethod]
-        [TestCategory("negativescenario")]
-        public void GivenNullShouldReturnHappy()
+        [TestCategory("Customexception")]
+        public void GivenNullShouldReturnCustomNullException()
         {
             //AAA Methology
 
             //Arrange
-            string excepted = "happy";
+            string excepted = "Message should not be null";
             MoodAnalyzer moodAnalyser = new MoodAnalyzer(null);
-
-            //ACT
-            string actual = moodAnalyser.AnalyzeMood();
-
-            //ASSERT
-            Assert.AreEqual(excepted, actual);
+            try
+            {
+                //ACT
+                string actual = moodAnalyser.AnalyzeMood();
+            }
+            catch (CustomMoodAnalyzerException ex)
+            {
+                //ASSERT
+                Assert.AreEqual(excepted, ex.Message);
+            }
         }
+
+        [TestMethod]
+        [TestCategory("Customexception")]
+        public void GivenEmptyShouldReturnCustomEmptyException()
+        {
+            //AAA Methology
+
+            //Arrange
+            string excepted = "Message should not be empty";
+            MoodAnalyzer moodAnalyser = new MoodAnalyzer(string.Empty);
+            try
+            {
+                //ACT
+                string actual = moodAnalyser.AnalyzeMood();
+            }
+            catch (CustomMoodAnalyzerException ex)
+            {
+                //ASSERT
+                Assert.AreEqual(excepted, ex.Message);
+            }
+        }
+
     }
 }
