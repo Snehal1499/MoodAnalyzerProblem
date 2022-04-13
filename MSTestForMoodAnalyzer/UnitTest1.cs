@@ -6,47 +6,66 @@ namespace MSTestForMoodAnalyzer
     [TestClass]
     public class UnitTest1
     {
+        //Arrangement
+        MoodAnalyzer moodAnalyzer = new MoodAnalyzer();
 
         [TestMethod]
-        [TestCategory("Customexception")]
-        public void GivenNullShouldReturnCustomNullException()
+        public void CheckMoodHappy()
         {
-            //AAA Methology
-
-            //Arrange
-            string excepted = "Message should not be null";
-            MoodAnalyzer moodAnalyser = new MoodAnalyzer(null);
-            try
-            {
-                //ACT
-                string actual = moodAnalyser.AnalyzeMood();
-            }
-            catch (CustomMoodAnalyzerException ex)
-            {
-                //ASSERT
-                Assert.AreEqual(excepted, ex.Message);
-            }
+            //Action
+            string res = moodAnalyzer.CheckMood("Snehal is Happy for her new Mobile");
+            //Assert
+            Assert.AreEqual("happy", res);
         }
-
         [TestMethod]
-        [TestCategory("Customexception")]
-        public void GivenEmptyShouldReturnCustomEmptyException()
+        public void CheckMoodSad()
         {
-            //AAA Methology
-
-            //Arrange
-            string excepted = "Message should not be empty";
-            MoodAnalyzer moodAnalyser = new MoodAnalyzer(string.Empty);
+            //Action
+            string res = moodAnalyzer.CheckMood("Snehal is Sad after getting Fail in Exam");
+            //Assert
+            Assert.AreEqual("sad", res);
+        }
+        [TestMethod]
+        public void CheckNullException()
+        {
             try
             {
-                //ACT
-                string actual = moodAnalyser.AnalyzeMood();
+                //Action
+                string res = moodAnalyzer.CheckMood(null);
             }
-            catch (CustomMoodAnalyzerException ex)
+            catch (CustomMoodAnalyzerException mEx)
             {
-                //ASSERT
-                Assert.AreEqual(excepted, ex.Message);
+                //Assert
+                Assert.AreEqual(ExceptionType.NULL_VALUE, mEx.extype);
+                Assert.AreEqual("message is null", mEx.Message);
+
             }
+
+        }
+        [TestMethod]
+        public void CheckEmptyExcep()
+        {
+            try
+            {
+                //Action
+                string res = moodAnalyzer.CheckMood("");
+            }
+            catch (CustomMoodAnalyzerException mEx)
+            {
+                //Assert
+                Assert.AreEqual(ExceptionType.EMPTY_TYPE, mEx.extype);
+                Assert.AreEqual("provided message is empty", mEx.Message);
+
+            }
+
+        }
+        [TestMethod]
+        public void CheckObjWithDefaultConstructor()
+        {
+            FactoryMood<MoodAnalyzer> myFact = new FactoryMood<MoodAnalyzer>();
+            var res_obj = myFact.GetObjectByDefaultConstructor();
+
+            Assert.IsNotInstanceOfType(res_obj, typeof(MoodAnalyzer));
         }
 
     }

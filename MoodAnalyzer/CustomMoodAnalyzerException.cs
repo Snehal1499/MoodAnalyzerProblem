@@ -1,18 +1,19 @@
 ﻿using System;
 namespace Mood_Analyzer_problem
 {
+    public enum ExceptionType
+    {
+        NULL_VALUE,
+        EMPTY_TYPE,
+    }
+
     public class CustomMoodAnalyzerException : Exception
     {
-        public ExceptionType type;
-        public enum ExceptionType
-        {
-            INVALID_MOOD_EXCEPTION,
-            EMPTY_TYPE_EXCEPTION
-        }
+        public ExceptionType extype;
 
-        public CustomMoodAnalyzerException(ExceptionType type, string massage) : base(massage)
+        public CustomMoodAnalyzerException(string msg, ExceptionType extype) : base(msg)
         {
-            this.type = type;
+            this.extype = extype;
         }
     }
 }
