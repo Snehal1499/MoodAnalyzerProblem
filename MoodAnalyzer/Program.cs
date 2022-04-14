@@ -7,7 +7,7 @@ namespace Mood_Analyzer_problem
         static void Main(string[] args)
         {
             MoodAnalyzer moodAnalyzer = new MoodAnalyzer();
-            Console.WriteLine(moodAnalyzer.CheckMood(""));
+            
         }
     }
 }

@@ -21,7 +21,7 @@ namespace MSTestForMoodAnalyzer
         public void CheckMoodSad()
         {
             //Action
-            string res = moodAnalyzer.CheckMood("Snehal is Sad after getting Fail in Exam");
+            string res = moodAnalyzer.CheckMood("Snehal is Sad after getting Fail in  Exam");
             //Assert
             Assert.AreEqual("sad", res);
         }
@@ -65,7 +65,15 @@ namespace MSTestForMoodAnalyzer
             FactoryMood<MoodAnalyzer> myFact = new FactoryMood<MoodAnalyzer>();
             var res_obj = myFact.GetObjectByDefaultConstructor();
 
-            Assert.IsNotInstanceOfType(res_obj, typeof(MoodAnalyzer));
+            Assert.IsInstanceOfType(res_obj, typeof(MoodAnalyzer));
+        }
+        [TestMethod]
+        public void InvokedMethod()
+        {
+            FactoryMood<MoodAnalyzer> myFact = new FactoryMood<MoodAnalyzer>();
+
+            string result = myFact.InvokeMood("Snehal is Happy for her new Mobile");
+            Assert.AreEqual("happy", result);
         }
 
     }
